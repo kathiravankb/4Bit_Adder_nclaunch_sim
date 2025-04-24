@@ -60,6 +60,42 @@ Note : File name should be with HDL Extension
 */Program to design 4 bit adder by instantiating 1 bit Full adder.also add test bench program */
 Developed by: Register Number*/
 
+Verilog Code:
+
+module full_adder(A,B,CIN,S,COUT);
+
+input A,B,CIN;
+
+output S,COUT;
+
+assign S=A^B^CIN;
+
+assign COUT=(A&B) | (CIN&(A^B));
+
+endmodule
+
+test bench program 
+
+module fulladd_4bit(A,B,C0,S,C4); input [3:0] A,B;
+
+input C0; 
+
+output [3:0] S; 
+
+output C4;
+
+wire C1,C2,C3;
+
+full_adder fa0 (A[0],B[0],C0,S[0],C1);
+
+full_adder fa1 (A[1],B[1],C1,S[1],C2);
+
+full_adder fa2 (A[2],B[2],C2,S[2],C3);
+
+full_adder fa3 (A[3],B[3],C3,S[3],C4);
+
+endmodule
+
 ## Functional Simulation: 
 
 	Invoke the cadence environment by type the below commands 
@@ -71,6 +107,9 @@ Developed by: Register Number*/
       (The path of cshrc could vary depending on the installation destination)
       
 	After this you can see the window like below 
+
+![Screenshot 2025-04-24 172948](https://github.com/user-attachments/assets/0f713e94-7758-4dd7-8ea4-971b9e647651)
+
 
 ### Fig 3:Invoke the Cadence Environment
 
@@ -84,11 +123,17 @@ or
 
 	It will invoke the nclaunch window for functional simulation we can compile,elaborate and simulate it using Multiple Step .
 
+![Screenshot 2025-04-24 173201](https://github.com/user-attachments/assets/61d0287c-3af8-4cb3-864e-a5f2c117fac3)
+
+
 ### Fig 4:Setting Multi-step simulation
 
 	Select Multiple Step and then select “Create cds.lib File” .
 
 	Click the cds.lib file and save the file by clicking on Save option 
+
+![Screenshot 2025-04-24 173321](https://github.com/user-attachments/assets/91c4e33a-c07f-4b0a-bc88-3dea20071a4b)
+
 
 ### Fig 5:cds.lib file Creation
 
@@ -112,6 +157,10 @@ or
 
 	To perform the function simulation, the following three steps are involved Compilation, Elaboration and Simulation. 
 
+![Screenshot 2025-04-24 173502](https://github.com/user-attachments/assets/0cf2c0a6-4524-4de5-8d02-9688a6346cf2)
+
+
+
 ### Fig 7: Nclaunch Window
 
 ## Step 1: Compilation:– Process to check the correct Verilog language syntax and usage 
@@ -130,6 +179,9 @@ i.e Cadence IES command for compile: ncverilog +access+rwc -compile fa.v
 Left side select the file and in Tools : launch verilog compiler with current selection will get enable. Click it to compile the code 
 
 Worklib is the directory where all the compiled codes are stored while Snapshot will have output of elaboration which in turn goes for simulation
+
+![Screenshot 2025-04-24 173537](https://github.com/user-attachments/assets/7120caf5-7ce9-41e6-9009-a8e3e15654e4)
+
 
 ### Fig 8: Compiled database in worklib
 
@@ -153,6 +205,7 @@ i.e Cadence IES command for compile: ncverilog +access+rwc -compile fa.v
 5.	It also establishes net connectivity and prepares all of this for simulation
    
 	After elaboration the file will come under snapshot. Select the test bench and elaborate it.
+![Screenshot 2025-04-24 173603](https://github.com/user-attachments/assets/17e7fd96-7d90-4903-ade5-4ff78848f673)
 
 ### Fig 9: Elaboration Launch Option
 
@@ -166,11 +219,23 @@ i.e Cadence IES command for compile: ncverilog +access+rwc -compile fa.v
 
 	Steps for simulation – Run the simulation command with simulator options
 
+![Screenshot 2025-04-24 173927](https://github.com/user-attachments/assets/1dc55ea1-2e23-4d6b-af1c-e5ad5eac5081)
+
+
 ### Fig 10: Design Browser window for simulation
+
+![Screenshot 2025-04-24 174108](https://github.com/user-attachments/assets/3c4814dd-eddd-4699-8796-b5e6375a25ea)
+
 
 ### Fig 11: Launching Simulation Waveform WindowSimulation Waveform Window
 
+![Screenshot 2025-04-24 174204](https://github.com/user-attachments/assets/aee13fe2-fa07-44bc-8624-a9a007327000)
+
+
 ### Fig 12: Simulation Waveform Window
+
+![Screenshot 2025-04-24 174204](https://github.com/user-attachments/assets/64ebc096-3afa-4aa3-8fc4-626a08c39ab7)
+
 
 ### Result:
 
